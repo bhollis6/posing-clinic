@@ -6,18 +6,22 @@ const quarterTurns = [
     {
         name: "Front Relaxed",
         img: "img/front_relaxed.jpg",
+        lazy: "lazy_loading/front_relaxed-min.jpg",
     },
     {
         name: "Right Relaxed",
         img: "img/right_relaxed.jpg",
+        lazy: "lazy_loading/right_relaxed-min.jpg",
     },
     {
         name: "Rear Relaxed",
         img: "img/rear_relaxed.jpg",
+        lazy: "lazy_loading/rear_relaxed-min.jpg",
     },
     {
         name: "Left Relaxed",
         img: "img/left_relaxed.jpg",
+        lazy: "lazy_loading/front_relaxed-min.jpg",
     },
 ];
 
@@ -30,22 +34,27 @@ const classicPoses = [
     {
         name: "Front Double Biceps",
         img: "img/front_double.jpg",
+        lazy: "lazy_loading/front-double-min.jpg",
     },
     {
         name: "Side Chest",
         img: "img/side_chest.jpg",
+        lazy: "lazy_loading/side_chest-min.jpg",
     },
     {
         name: "Back Double Biceps",
         img: "img/back_double.jpg",
+        lazy: "lazy_loading/back_double-min.jpg",
     },
     {
         name: "Abdominal and Thighs",
         img: "img/abs.jpg",
+        lazy: "lazy_loading/abs-min.jpg",
     },
     {
         name: "Favorite Classic Pose",
         img: "img/favorite.jpg",
+        lazy: "lazy_loading/favorite-min.jpg",
     },
 ];
 
@@ -133,7 +142,7 @@ function mandatory(index, round, pose) {
     content.innerHTML = `<h1>ROUND<span>${round}</h1>
     <h2>${pose[index].name}</h2>
     <div class="countdown"></div>`;
-    header.style.backgroundImage = `url('${pose[index].img}')`;
+    header.style.backgroundImage = `url('${pose[index].lazy}')`;
     startPosing();
 }
 
