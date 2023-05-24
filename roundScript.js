@@ -21,6 +21,10 @@ const quarterTurns = [
     },
 ];
 
+const preloadedImages = [];
+
+
+
 /* Array of five possible classic poses. Classic poses 
 *  are called at random. (Even with duplicate calls). 
 *  However, the fifth and last pose is always 
@@ -59,6 +63,15 @@ let endTime, timer;
 let index = -1;
 let round = 1;
 let randomNumber;
+
+function preloadImage(src) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = reject;
+      image.src = src;
+    });
+  }
 
 function tick() {
     let now = new Date().getTime();
@@ -129,7 +142,13 @@ function nextRound(){
 }
 
 // Modifies HTML & CSS while using recursion.
-function mandatory(index, round, pose) {
+async function mandatory(index, round, pose) {
+    const image = await preloadImage(pose[index].img);
+    preloadedImages.push(image);
+
+    // Update the background image once the image is preloaded
+    header.style.backgroundImage = `url('${image.src}')`;
+
     content.innerHTML = `<h1>ROUND<span>${round}</h1>
     <h2>${pose[index].name}</h2>
     <div class="countdown"></div>`;
