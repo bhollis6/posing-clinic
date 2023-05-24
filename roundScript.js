@@ -40,13 +40,12 @@ const classicPoses = [
     },
 ];
 
-const preloadedImages = [];
-
 const content = document.querySelector('.content');
 const header = document.querySelector('header');
 const roundNumber = document.getElementById('roundNumber');
 const qTLength = quarterTurns.length;
 const cPLength = classicPoses.length;
+const preloadedImages = [];
 
 let endTime, timer;
 let index = -1;
@@ -125,7 +124,6 @@ function rest(){
     countDownTimer(45);
 }
 
-
 function nextRound(){
     rest();
     round++;
@@ -157,5 +155,5 @@ function countDownTimer(countdownSeconds){
     timer = setInterval(tick, 1);
 }
 
-// Main call.
+// Get ready.
 countDownTimer(10);
