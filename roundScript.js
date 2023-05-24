@@ -1,7 +1,3 @@
-/* Array of four possible quarter turns.
-*  Quarter turns are called linearly 
-*  from front relaxed to left relaxed.
-*/
 const quarterTurns = [
     {
         name: "Front Relaxed",
@@ -21,7 +17,7 @@ const quarterTurns = [
     },
 ];
 
-const preloadedImages = [
+const classicPoses = [
     {
         name: "Front Double Biceps",
         img: "img/front_double.jpg",
@@ -44,14 +40,7 @@ const preloadedImages = [
     },
 ];
 
-
-
-/* Array of five possible classic poses. Classic poses 
-*  are called at random. (Even with duplicate calls). 
-*  However, the fifth and last pose is always 
-*  your favorite classic pose.
-*/
-const classicPoses = [
+const preloadedImages = [
     {
         name: "Front Double Biceps",
         img: "img/front_double.jpg",
@@ -87,12 +76,12 @@ let randomNumber;
 
 function preloadImage(src) {
     return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.onload = () => resolve(image);
-      image.onerror = reject;
-      image.src = src;
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = src;
     });
-  }
+}
 
 function tick() {
     let now = new Date().getTime();
@@ -115,7 +104,6 @@ function tick() {
     } else {
         clearInterval(timer);
         index++;
-        // Randomized callout from judge (exclusive of Favorite Classic Pose).
         randomNumber = Math.floor(Math.random() * 4) ;
 
         // Round 1.
@@ -148,12 +136,13 @@ function tick() {
 }
 
 function rest(){
-    content.innerHTML = `<h2>Rest</h2>;
-    <div class="countdown"></div>`;
+    // Preloader.
     preloadImage('img/rest.jpg').then(image => {
         header.style.backgroundImage = `url('${image.src}')`;
-      });
-    // Minute of rest given in between rounds.
+    
+    content.innerHTML = `<h2>Rest</h2>;
+    <div class="countdown"></div>`;
+    });
     countDownTimer(45);
 }
 
@@ -164,12 +153,10 @@ function nextRound(){
     index= -1;
 }
 
-// Modifies HTML & CSS while using recursion.
 async function mandatory(index, round, pose) {
+    // Preloader.
     const image = await preloadImage(pose[index].img);
     preloadedImages.push(image);
-
-    // Update the background image once the image is preloaded
     header.style.backgroundImage = `url('${image.src}')`;
 
     content.innerHTML = `<h1>ROUND<span>${round}</h1>
@@ -180,7 +167,6 @@ async function mandatory(index, round, pose) {
 }
 
 function startPosing() {
-    // Judges require holding for anywhere from 10-15 seconds.
     let randomNumber = Math.floor(Math.random() * 6) + 10;
     countDownTimer(randomNumber);
 }
@@ -192,5 +178,5 @@ function countDownTimer(countdownSeconds){
     timer = setInterval(tick, 1);
 }
 
-// MAIN.
+// Main call.
 countDownTimer(10);
