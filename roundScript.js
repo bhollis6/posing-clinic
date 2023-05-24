@@ -21,7 +21,28 @@ const quarterTurns = [
     },
 ];
 
-const preloadedImages = [];
+const preloadedImages = [
+    {
+        name: "Front Double Biceps",
+        img: "img/front_double.jpg",
+    },
+    {
+        name: "Side Chest",
+        img: "img/side_chest.jpg",
+    },
+    {
+        name: "Back Double Biceps",
+        img: "img/back_double.jpg",
+    },
+    {
+        name: "Abdominal and Thighs",
+        img: "img/abs.jpg",
+    },
+    {
+        name: "Favorite Classic Pose",
+        img: "img/favorite.jpg",
+    },
+];
 
 
 
