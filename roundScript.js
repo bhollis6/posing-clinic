@@ -150,7 +150,9 @@ function tick() {
 function rest(){
     content.innerHTML = `<h2>Rest</h2>;
     <div class="countdown"></div>`;
-    header.style.backgroundImage = `url('img/rest.jpg')`;
+    preloadImage('img/rest.jpg').then(image => {
+        header.style.backgroundImage = `url('${image.src}')`;
+      });
     // Minute of rest given in between rounds.
     countDownTimer(45);
 }
